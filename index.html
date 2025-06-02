@@ -1,0 +1,2073 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Responsive Movie Website</title>
+    <!-- <link rel ="stylesheet" href="ughh.css"/> -->
+    <!--box icons-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        *{
+    font-family: serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+    scroll-padding-top: 2rem;
+    scroll-behavior: smooth;
+
+
+}
+
+:root{
+    --main-color: linear-gradient(to right, #e52e71, #ff8a00);
+    --text-color: #1a1a1a;
+    --bg-color: #fff;
+}
+
+body{
+    background: var(--text-color);
+    color: var(--bg-color);
+
+}
+ /* Hero Section Styles */
+        .hero {
+            display: flex;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: white;
+            padding: 0 5%;
+            align-items: center;
+        }
+
+        .hero-content {
+            flex: 1;
+            padding-right: 50px;
+        }
+
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #ff8a00, #e52e71);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            animation: fadeInUp 1.2s ease;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(to right, #e52e71, #ff8a00);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1.4s ease;
+            box-shadow: 0 4px 15px rgba(229, 46, 113, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(229, 46, 113, 0.6);
+        }
+
+        /* SVG Animation */
+        .movie-icon {
+            width: 100%;
+            max-width: 500px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .film-reel {
+            animation: spin 20s linear infinite;
+            transform-origin: center;
+        }
+
+        .popcorn {
+            animation: bounce 2s ease infinite;
+        }
+
+        .ticket {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* Keyframes for animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding: 100px 5% 50px;
+            }
+
+            .hero-content {
+                padding-right: 0;
+                margin-bottom: 50px;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .movie-icon {
+                max-width: 300px;
+            }
+        }
+/*custom scroll br*/
+html::-webkit-scrollbar{
+    width: 0.5rem;
+    background: var(--text-color);
+
+}
+html::-webkit-scrollbar-thumb{
+    background: var(--main-color);
+    border-radius: 5rem;
+}
+
+section{
+    padding: 4.5rem 0 1.5rem;
+
+}
+
+
+header{
+    position: fixed;
+    width: 100%;
+    top: 0;
+    right: 0;
+    z-index: 1000 ;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 100px;
+    transition: 0.5s;
+    
+    /* background: var(--main-color); */
+    background-color: #1a1a1a39;
+    backdrop-filter: blur(5px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    
+
+}
+.logo{
+    font-size: 1.1rem;
+    font-weight: 600rem;
+    color: var(--bg-color);
+    display: flex;
+    align-items: center;
+    column-gap: 0.5rem;
+
+}
+.logo .bx{
+    font-size: 24px;
+    color: var(--main-color);
+
+}
+
+.navbar{
+    display: flex;
+    column-gap: 5rem;
+    
+}
+.navbar li{
+    position: relative;
+   
+
+}
+.navbar a{
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--bg-color);
+
+}
+
+.navbar a::after{
+    content: '';
+    width: 0;
+    height: 2px;
+    background: var(--main-color);
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    transition: 0.4s all linear;
+}
+
+.navbar a:hover::after{
+    width: 100%;
+}
+
+#menu-icon{
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1000001;
+    display: none;
+
+}
+.btn{
+    padding: 0.7rem 1.4rem;
+    background: var(--main-color);
+    color: var(--bg-color);
+    font-weight: 400;
+    border-radius: 0.5rem;
+    
+}
+
+.btn:hover{
+    color: radial-gradient(to right, #e52e71, #ff8a00);
+    border: 2px solid whitesmoke;
+}
+h1{
+    color:#fff;
+    font-family: serif;
+    font-size: 50px;
+    /* text-align: center; */
+    
+}
+h1:hover{
+    color:linear-gradient(to right, #e52e71, #ff8a00) ;
+    cursor: pointer;
+    transition: 0.5s;
+}
+/* h2{
+    color:#fff;
+    font-family: serif;
+    font-size: 50px;
+    text-align: center;
+}
+h3{
+    color:#f9ff4f;
+    font-family: serif;
+    top: 20px;
+    padding: 10px;
+    text-align: center;
+} */
+ /* Container for spacing (optional) */
+.section-heading {
+  margin: 40px 0;
+  text-align: center;
+}
+
+.section-header
+    {
+            width: 200px;
+            height: 100px;
+            margin: 50px auto;
+            position: relative;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+.section-header::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border: 2px dashed #3498db;
+            border-radius: 8px;
+            animation: spin-dash 10s linear infinite;
+}
+
+@keyframes spin-dash {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+
+/* Heading Animation */
+.animated-heading {
+font-size: 2rem;
+font-weight: bold;
+opacity: 0;
+transform: translateY(-20px);
+animation: fadeSlideIn 1s ease-out forwards;
+/* animation: colorRotate 5s linear infinite; */
+}
+/* @keyframes colorRotate {
+    to{0% { color: #ff0000; }
+20% { color: #ffff00; }
+40% { color: #00ff00; }
+60% { color: #00ffff; }
+80% { color: #0000ff; }
+100% { color: #ff00ff; }} */
+
+
+.animated-heading:hover{
+    color: #b2070f;
+    cursor: pointer;
+}
+/* Subtitle Animation (slightly delayed) */
+.animated-subtitle {
+font-size: 1.2rem;
+color: #ff8a00 ;
+opacity: 10;
+transform: translateY(20px);
+animation: fadeSlideIn 1s ease-out 2s forwards;
+}
+
+/* Keyframes */
+@keyframes fadeSlideIn {
+to {
+    opacity: 2;
+    transform: translateY(0);
+}
+}
+
+
+.play .bx{
+    background-color: var(--bg-color);
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 50%;
+    border: 4px solid rgb(2,3,7,0.4);
+    color: var(--main-color);
+}
+.play .bx:hover{
+    background: var(--main-color);
+    color: var(--bg-color);
+    transition: 0.2s all linear;
+    cursor: pointer;
+} 
+
+.PScontainer{
+    width: 90%;
+    padding: 20px;
+    margin: 100px auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    /* background-color: #fff; */
+
+}
+.PSbox{
+    width: 300px;
+    margin: 0 10px;
+    box-shadow: 0 0 20px 2px rgba(0,0,0,.1);
+    transition: 1s;
+    background-color: #e52ec03b;
+    backdrop-filter: blur(5px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    border-left: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    padding: 5px;
+    text-align: left;
+    justify-content: center;
+
+
+}
+.PSbox img{
+    display: block;
+    width: 100%;
+    border-radius: 5px;
+}
+
+
+.PSbox:hover{
+    /* transform: scale(1.3);
+    z-index: 2; */
+    transform: translateY(-40px);
+    cursor: pointer;
+}
+/* Learn More Button */
+.learn-more-btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background-color: #e52e71;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+        
+        .learn-more-btn:hover {
+            background-color: #2980b9;
+        }
+        
+        /* Modal Styles */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+            z-index: 1000;
+        }
+        
+        .modal-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transform: translateY(-20px);
+            transition: transform 0.3s;
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .modal-title {
+            font-size: 1.5rem;
+            color: #333;
+        }
+        
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #777;
+        }
+        
+        .close-btn:hover {
+            color: #333;
+        }
+        
+        .modal-body {
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+        
+        .modal-body p {
+            margin-bottom: 1rem;
+            color: #555;
+        }
+        
+        .watch-now-btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background-color: #e74c3c;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .watch-now-btn:hover {
+            background-color: #c0392b;
+        }
+        
+        /* Modal Trigger Magic */
+        .modal-toggle {
+            display: none;
+        }
+        
+        .modal-toggle:checked ~ .modal {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        .modal-toggle:checked ~ .modal .modal-content {
+            transform: translateY(0);
+        }
+
+
+.Mcontainer{
+    width: 90%;
+    padding: 20px;
+    margin: 100px auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    /* padding-bottom: 5px; */
+
+}
+.Mbox{
+    width: 290px;
+    margin: 0 10px;
+    box-shadow: 0 0 20px 2px rgba(232, 228, 228, 0.1);
+    transition: 1s;
+    background-color: #e52ec03b;
+    backdrop-filter: blur(5px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    border-left: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    padding: 5px;
+    top: 10px;
+    text-align: left;
+    justify-content: center;
+    padding-bottom: 5px;
+    
+
+}
+.Mbox img{
+    display: block;
+    width: 100%;
+    border-radius: 5px;
+}
+
+.Mbox:hover{
+    transform: scale(1.3);
+    z-index: 3;
+    cursor: pointer;
+}
+
+/*review section*/
+.reviews-section {
+            margin: 40px 0;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #0f1a2b;
+            border-bottom: 2px solid #f5c518;
+            padding-bottom: 10px;
+        }
+        
+        .reviews-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+        }
+        
+        .review-card {
+            background-color: rgba(124, 19, 77, 0.719);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+                /* .review-card::before{
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    border: 2px solid transparent;
+                    box-sizing: border-box;
+                } */
+                .review-card:hover:{
+                    cursor: pointer;
+                    animation: drawBorder 1.5s linear forwards;
+                }
+                @keyframes drawBorder {
+                    0% {
+                        width: 0;
+                        height: 0;
+                        border-top-color: #3498db;
+                        border-right-color: transparent;
+                        border-bottom-color: transparent;
+                        border-left-color: transparent;
+                    }
+                    33% {
+                        width: 100%;
+                        height: 0;
+                        border-top-color: #3498db;
+                        border-right-color: #3498db;
+                        border-bottom-color: transparent;
+                        border-left-color: transparent;
+                    }
+                    66% {
+                        width: 100%;
+                        height: 100%;
+                        border-top-color: #3498db;
+                        border-right-color: #3498db;
+                        border-bottom-color: #3498db;
+                        border-left-color: transparent;
+                    }
+                    100% {
+                        width: 100%;
+                        height: 100%;
+                        border-top-color: #3498db;
+                        border-right-color: #3498db;
+                        border-bottom-color: #3498db;
+                        border-left-color: #3498db;
+                    }
+                }
+
+        
+        .review-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .user-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #ddd;
+            margin-right: 15px;
+            overflow: hidden;
+        }
+        
+        .user-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .user-info h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+        
+        .review-rating {
+            color: #f5c518;
+            font-size: 0.9rem;
+        }
+        
+        .review-date {
+            color: #e7d5d5;
+            font-size: 0.8rem;
+        }
+        
+        .review-content {
+            margin-bottom: 15px;
+        }
+        
+        .review-actions {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .review-actions button {
+            background: none;
+            border: none;
+            color: #e9dfdf;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+        
+        .review-actions button:hover {
+            color: #0f1a2b;
+        }
+        
+        .add-review {
+            width: 80%;
+            position: relative;
+            
+            margin-top: 40px;
+            background-color: rgba(239, 182, 239, 0.125);
+            backdrop-filter: blur(2px);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(121, 114, 114, 0.1);
+        }
+        
+        .review-form .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .review-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        .review-form input,
+        .review-form textarea,
+        .review-form select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .review-form textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background-color: #0f1a2b;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .submit-btn:hover {
+            background-color: #1a2a3f;
+            border: 2px solid wheat;
+            cursor: pointer;
+        }
+
+        
+        /* responsive-page */
+
+        @media(max-width: 991px){
+            header{
+                padding: 18px 4%;
+                /* background-color: #171616; */
+
+            }
+            section{
+                padding: 50px 4%;
+            }
+             .Mcontainer{
+                gap: 20px;
+                display: flex;
+                flex-direction: column;
+            }
+            .PScontainer{
+                gap: 15px;
+                display: flex;
+                flex-direction: column;
+            }
+            
+        }
+        @media (max-width: 774px) {
+            header{
+                padding: 12px 4%;
+            }
+            #menu-icon{
+                display: initial;
+                color: var(--bg-color);
+
+            }
+            .navbar{
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                display: flex;
+                flex-direction: column;
+                background: #ffffff24;
+                row-gap: 1.4rem;
+                padding: 10px;
+                backdrop-filter: blur(3px);
+            }
+            .navbar a{
+                color: var(--bg-color);
+
+            }
+            
+            .navbar a::after{
+                display: none;
+            }
+            .Mcontainer{
+                gap: 20px;
+                display: flex;
+                flex-direction: column;
+            }
+            .movies-container{
+                display: flex;
+                flex-direction: column;
+            }
+            .PScontainer{
+                gap: 15px;
+                display: flex;
+                flex-direction: column;
+            }
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .footer-about, 
+            .footer-links, 
+            .footer-social {
+                text-align: center;
+            }
+            
+            .footer-links h3:after,
+            .footer-social h3:after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            .social-icons {
+                justify-content: center;
+            }
+            
+        }
+
+
+/* Footer Styles */
+        footer {
+            background-color: #141414;
+            color: #fff;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+        }
+        
+        .footer-logo {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #e50914;
+        }
+        
+        .footer-about p {
+            color: #b3b3b3;
+            line-height: 1.6;
+        }
+        
+        .footer-links h3, 
+        .footer-social h3 {
+            color: #fff;
+            font-size: 20px;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-links h3:after,
+        .footer-social h3:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 3px;
+            background: #e50914;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: #b3b3b3;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--main-color);
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background-color: #333;
+            border-radius: 50%;
+            color: #fff;
+            font-size: 20px;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        
+        .social-icons a:hover {
+            background-color: red;
+            transform: translateY(-5px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            margin-top: 40px;
+            border-top: 1px solid #333;
+            color: #b3b3b3;
+            font-size: 14px;
+        }
+        
+        .footer .btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--bg-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            z-index: 999;
+        }
+        
+        .back-to-top:hover {
+            background-color: #b2070f;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+/*2nd movie section */
+
+
+.movies-section {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .section-title {
+            font-size: 3rem;
+            color: #333;
+            margin: 0;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            margin-top: 10px;
+            font-style: italic;
+        }
+        
+        .movies-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .movie-card {
+            width: 250px;
+            border-radius: 10px;
+            padding: 5px;
+            padding-bottom: 0;
+            top: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            /* color: white; */
+            /* background: white; */
+            background-color: #e52ec03b;
+            backdrop-filter: blur(5px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+            border-left: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .movie-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .movie-poster {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+        }
+        
+        .movie-info {
+            padding: 15px;
+            position: relative;
+        }
+        
+        .movie-title {
+            font-size: 1.2rem;
+            margin: 0 0 10px 0;
+            color: #faf5f5;
+        }
+        
+        .movie-desc {
+            font-size: 0.9rem;
+            color: #fdf9f9;
+            margin: 0 0 20px 0;
+            line-height: 1.4;
+        }
+        
+        .movie-duration {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            font-size: 0.8rem;
+            color: #1a1a1a;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 3px 8px;
+            border-radius: 10px;
+        }
+        
+        .card-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .movie-card:hover .card-overlay {
+            opacity: 1;
+        }
+        
+        .watch-now-btn {
+            padding: 10px 20px;
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            margin-bottom: 20px;
+            text-decoration: none;
+        }
+        
+        .watch-now-btn:hover {
+            background: #ff5252;
+        }
+        
+        .watchlist-toggle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #4ecdc4;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background 0.3s ease;
+        }
+        
+        .watchlist-toggle:hover {
+            background: #3dbeb5;
+        }
+        
+        .watchlist-toggle.added {
+            background: #48c774;
+        }
+        /* Responsive Styles */
+@media (max-width: 1200px) {
+    .movies-section {
+        padding: 0 40px;
+    }
+}
+
+@media (max-width: 992px) {
+    .section-title {
+        font-size: 2.5rem;
+    }
+    .movies-container {
+        gap: 20px;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .movie-card {
+        width: 220px;
+    }
+    
+    .movie-poster {
+        height: 320px;
+    }
+}
+
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 2.2rem;
+    }
+    
+    .section-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .movies-container {
+        gap: 20px;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .movie-card {
+        width: 200px;
+    }
+    
+    .movie-poster {
+        height: 280px;
+    }
+    
+    .movie-title {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .section-header {
+        margin-bottom: 30px;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+    }
+    
+    .movies-container {
+        gap: 15px;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .movie-card {
+        width: 160px;
+    }
+    
+    .movie-poster {
+        height: 240px;
+    }
+    
+    .movie-info {
+        padding: 12px;
+    }
+    
+    .movie-title {
+        font-size: 1rem;
+        margin-bottom: 8px;
+    }
+    
+    .movie-desc {
+        font-size: 0.8rem;
+        margin-bottom: 15px;
+    }
+    
+    .movie-duration {
+        font-size: 0.7rem;
+        bottom: 12px;
+        right: 12px;
+    }
+    
+    .watch-now-btn {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+    
+    .watchlist-toggle {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .movies-section {
+        padding: 0 20px;
+    }
+    
+    .section-title {
+        font-size: 1.6rem;
+    }
+    
+    .section-subtitle {
+        font-size: 1rem;
+    }
+    
+    .movie-card {
+        width: 140px;
+    }
+    
+    .movie-poster {
+        height: 210px;
+    }
+    
+    .movie-info {
+        padding: 10px;
+    }
+    
+    .movie-desc {
+        display: none; /* Hide description on very small screens */
+    }
+    
+    .movie-duration {
+        position: static;
+        display: block;
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 360px) {
+    .movies-container {
+        gap: 10px;
+    }
+    
+    .movie-card {
+        width: 130px;
+    }
+    
+    .movie-poster {
+        height: 190px;
+    }
+}
+    </style>
+</head>
+<body>
+    <!---------------------navbar------------------------------------------>
+    <header>
+        <a href="#" class="logo">
+            <i class='bx bxs-movie' ></i>  MovieFlix
+        </a>
+        <div class="bx bx-menu" id="menu-icon"></div>
+
+        <!--menu-->
+        <ul class="navbar">
+            <li><a href="#home" class="home-active"> Home </a></li>
+            <li><a href="#Mcontainer"> Trending Movies </a></li>
+            <li><a href="#Shows"> Popular Shows </a></li>
+            <li><a href="#user-reviews"> User Reviews </a></li>
+            <!-- <li><a href="#Newsletter">Newsletter </a></li> -->
+        </ul>
+
+        <a href="#" class="btn"> Sign In</a>
+    </header>
+    <!-----Hero section-->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1 class="hero-title">MovieFlix</h1>
+            <p class="hero-subtitle">Unlimited Movies, Endless Entertainment</p>
+            <a href="#Mcontainer" class="cta-button">Explore Trending Movies</a>
+        </div>
+        <div class="hero-image">
+            <svg class="movie-icon" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+                <!-- Film Reel -->
+                <circle cx="250" cy="250" r="120" fill="#2d2d2d" />
+                <circle cx="250" cy="250" r="100" fill="#1a1a1a" />
+                <g class="film-reel">
+                    <rect x="240" y="150" width="20" height="50" fill="#e52e71" />
+                    <rect x="240" y="300" width="20" height="50" fill="#e52e71" />
+                    <rect x="150" y="240" width="50" height="20" fill="#ff8a00" />
+                    <rect x="300" y="240" width="50" height="20" fill="#ff8a00" />
+                    <rect x="185" y="185" width="30" height="30" transform="rotate(45 200 200)" fill="#00b4d8" />
+                    <rect x="285" y="285" width="30" height="30" transform="rotate(45 300 300)" fill="#00b4d8" />
+                    <rect x="185" y="285" width="30" height="30" transform="rotate(-45 200 300)" fill="#4cc9f0" />
+                    <rect x="285" y="185" width="30" height="30" transform="rotate(-45 300 200)" fill="#4cc9f0" />
+                </g>
+                
+                <!-- Popcorn -->
+                <g class="popcorn" transform="translate(150 350)">
+                    <path d="M20,0 Q25,15 30,0 Q35,15 40,0 Q45,15 50,0 L40,30 Q35,20 30,30 Q25,20 20,30 Z" fill="#ffd166" />
+                    <path d="M60,0 Q65,15 70,0 Q75,15 80,0 Q85,15 90,0 L80,30 Q75,20 70,30 Q65,20 60,30 Z" fill="#ffd166" />
+                    <path d="M100,0 Q105,15 110,0 Q115,15 120,0 Q125,15 130,0 L120,30 Q115,20 110,30 Q105,20 100,30 Z" fill="#ffd166" />
+                </g>
+                
+                <!-- Movie Ticket -->
+                <g class="ticket" transform="translate(350 100)">
+                    <path d="M0,0 L100,0 Q110,10 100,20 L0,20 Q-10,10 0,0 Z" fill="#f8f9fa" />
+                    <circle cx="80" cy="10" r="5" fill="#e52e71" />
+                    <text x="20" y="13" font-family="Arial" font-size="8" fill="#2d2d2d">VIP</text>
+                </g>
+                
+                <!-- Clapperboard -->
+                <g transform="translate(200 100) rotate(10)">
+                    <rect x="0" y="0" width="100" height="80" fill="#333" />
+                    <rect x="0" y="0" width="20" height="80" fill="#e52e71" />
+                    <rect x="25" y="10" width="70" height="10" fill="#f8f9fa" />
+                    <rect x="25" y="25" width="70" height="10" fill="#f8f9fa" />
+                    <rect x="25" y="40" width="70" height="10" fill="#f8f9fa" />
+                    <rect x="25" y="55" width="70" height="10" fill="#f8f9fa" />
+                </g>
+            </svg>
+        </div>
+    </section>
+
+   
+        <div class="section-heading">
+            <h2 class="animated-heading">Trending Movies</h2>
+            <p class="animated-subtitle">Catch the Hottest Flicks Everyone's Talking About!</p>
+    </div>
+
+    <div class="movies-section" id="Mcontainer">
+                
+        <div class="movies-container">
+            <!-- Movie Card 1 -->
+            <div class="movie-card">
+                <img src="https://m.media-amazon.com/images/M/MV5BMDExZGMyOTMtMDgyYi00NGIwLWJhMTEtOTdkZGFjNmZiMTEwXkEyXkFqcGdeQXVyMjM4NTM5NDY@._V1_.jpg" alt="John Wick 4" class="movie-poster">
+                <div class="movie-info">
+                    <h3 class="movie-title">John Wick: Chapter 4</h3>
+                    <p class="movie-desc">John Wick uncovers a path to defeating The High Table. But before he can earn his freedom...</p>
+                    <span class="movie-duration">2h 49m</span>
+                </div>
+                <div class="card-overlay">
+                    <a href="https://www.lionsgate.com/movies/john-wick-chapter-4" class="watch-now-btn" target="_blank">Watch Now</a>
+                    <button class="watchlist-toggle">+</button>
+                </div>
+            </div>
+            
+            <!-- Movie Card 2 -->
+            <div class="movie-card">
+                <img src="https://www.slsc.org/wp-content/uploads/2023/03/02-smb-dm-mobile-banner-1080x745-pl-f01-022723-63fe3cbc4df54-1.jpg" alt="The Super Mario Bros. Movie" class="movie-poster">
+                <div class="movie-info">
+                    <h3 class="movie-title">The Super Mario Bros. Movie</h3>
+                    <p class="movie-desc">A plumber named Mario travels through an underground labyrinth with his brother...</p>
+                    <span class="movie-duration">1h 32m</span>
+                </div>
+                <div class="card-overlay">
+                    <a href="https://www.thesupermariobros.movie/" class="watch-now-btn" target="_blank">Watch Now</a>
+                    <button class="watchlist-toggle">+</button>
+                </div>
+            </div>
+            
+            <!-- Movie Card 3 -->
+            <div class="movie-card">
+                <img src="https://m.media-amazon.com/images/M/MV5BZWMyYzFjYTYtNTRjYi00OGExLWE2YzgtOGRmYjAxZTU3NzBiXkEyXkFqcGdeQXVyMzQ0MzA0NTM@._V1_FMjpg_UX1000_.jpg" alt="Spider-Man: Across the Spider-Verse" class="movie-poster">
+                <div class="movie-info">
+                    <h3 class="movie-title">Spider-Man: No way Home</h3>
+                    <p class="movie-desc">Miles Morales catapults across the Multiverse, where he encounters a team of Spider-People...</p>
+                    <span class="movie-duration">2h 20m</span>
+                </div>
+                <div class="card-overlay">
+                    <a href="https://www.sonypictures.com/movies/spidermanacrossthespiderverse" class="watch-now-btn" target="_blank">Watch Now</a>
+                    <button class="watchlist-toggle">+</button>
+                </div>
+            </div>
+            
+            <!-- Movie Card 4 -->
+            <div class="movie-card">
+                <img src="https://m.media-amazon.com/images/M/MV5BYjhiNjBlODctY2ZiOC00YjVlLWFlNzAtNTVhNzM1YjI1NzMxXkEyXkFqcGdeQXVyMjQxNTE1MDA@._V1_FMjpg_UX1000_.jpg" alt="Avatar: The Way of Water" class="movie-poster">
+                <div class="movie-info">
+                    <h3 class="movie-title">Avatar: The Way of Water</h3>
+                    <p class="movie-desc">Jake Sully lives with his newfound family formed on the planet of Pandora...</p>
+                    <span class="movie-duration">3h 12m</span>
+                </div>
+                <div class="card-overlay">
+                    <a href="https://www.avatar.com/" class="watch-now-btn" target="_blank">Watch Now</a>
+                    <button class="watchlist-toggle">+</button>
+                </div>
+            </div>
+            
+            <!-- Movie Card 5 -->
+            <div class="movie-card">
+                <img src="https://m.media-amazon.com/images/S/pv-target-images/6ab1a7387a5971a36a576707f5e8f98611745fb78b6c5f90196fb4b6f839ec91.jpg" alt="Elemental" class="movie-poster">
+                <div class="movie-info">
+                    <h3 class="movie-title">Elemental</h3>
+                    <p class="movie-desc">In a city where fire, water, land and air residents live together, a fiery young woman...</p>
+                    <span class="movie-duration">1h 41m</span>
+                </div>
+                <div class="card-overlay">
+                    <a href="https://www.pixar.com/feature-films/elemental" class="watch-now-btn" target="_blank">Watch Now</a>
+                    <button class="watchlist-toggle">+</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="Mcontainer" id="Mcontainer">
+        
+        <div class="Mbox">
+            <img src="Movies/M1.jpg" alt="">
+            <div class="card-content">
+                <h3> Lilo & Stitch</h3>
+                <p> A lonely Hawaiian girl befriends a runaway alien, helping to mend her fragmented family. <br>1h 48m
+                    <!-- <br><a href="#" class="btn"> Watch Now</a> -->
+
+                </p>
+                
+            </div>
+            <br><a href="#" class="btn"> Watch Now</a>
+            <a href="#"class="play">
+                        <i class='bx  bx-bookmark-plus'></i> 
+                    </a>
+           
+
+        </div>
+        <div class="Mbox">
+            <img src="Movies/M2.jpg" alt="">
+            <div class="card-content">
+                <h3> Mission: Impossible </h3>
+                <p>The Final Reckoning: Our lives are the sum of our choices. Tom Cruise is Ethan Hunt in Mission: Impossible - The Final Reckoning. <br> 2h 49m
+
+
+
+                </p>
+            </div>
+            <br><a href="#" class="btn"> Watch Now</a>
+            <a href="#"class="play">
+                        <i class='bx  bx-bookmark-plus'></i> 
+                    </a>
+        </div>
+        <div class="Mbox">
+            <img src="Movies/M4.jpg" alt="">
+            <div class="card-content">
+                <h3>  Sinners</h3>
+                <p>Trying to leave their troubled lives behind, twin brothers return to their hometown to start again, only to discover that an even greater evil is waiting to welcome them back.  <br>2h 17m
+
+                </p>
+            </div>
+            <br><a href="#" class="btn"> Watch Now</a>
+            <a href="#"class="play">
+                        <i class='bx  bx-bookmark-plus'></i> 
+                    </a>
+        </div>
+        <div class="Mbox">
+            <img src="Movies/M5.jpg" alt="">
+            <div class="card-content">
+                <h3>The Shawshank Redemption</h3>
+                <p>A banker convicted of uxoricide forms a friendship over a quarter century with a hardened convict, while maintaining his innocence and trying to remain hopeful through simple compassion. <br> 2h 22m
+
+
+
+                </p>
+            </div>
+            <br><a href="#" class="btn"> Watch Now</a>
+            <a href="#"class="play">
+                        <i class='bx  bx-bookmark-plus'></i> 
+                    </a>
+        </div>
+        <div class="Mbox">
+            <img src="Movies/M6.jpg" alt="">
+            <div class="card-content">
+                <h3>The Hangover</h3>
+                <p> Three buddies wake up from a bachelor party in Las Vegas with no memory of the previous night and the bachelor missing. They must make their way around the city in order to find their friend in time for his wedding. <br> 1h 40m
+
+                </p>
+
+            </div>
+            <br><a href="#" class="btn"> Watch Now</a>
+            <a href="#"class="play">
+                        <i class='bx  bx-bookmark-plus'></i> 
+                    </a>
+        </div>
+        <div class="Mbox">
+            <img src="Movies/M7.jpg" alt="">
+            <div class="card-content">
+                <h3> Interstellar</h3>
+                <p> When Earth becomes uninhabitable in the future, a farmer and ex-NASA pilot, Joseph Cooper, is tasked to pilot a spacecraft, along with a team of researchers, to find a new planet for humans. <br> 2h 49m
+                </p>
+            </div>
+            <br><a href="#" class="btn"> Watch Now</a>
+            <a href="#"class="play">
+                        <i class='bx  bx-bookmark-plus'></i> 
+                    </a>
+        </div>
+        
+    </div>
+
+    <!-- <div class="movies-section" id="Mcontainer">
+                
+        <div class="movies-container"> -->
+            <!-- Movie Card 1 -->
+            <!-- <div class="movie-card">
+                <img src="https://m.media-amazon.com/images/M/MV5BMDExZGMyOTMtMDgyYi00NGIwLWJhMTEtOTdkZGFjNmZiMTEwXkEyXkFqcGdeQXVyMjM4NTM5NDY@._V1_.jpg" alt="John Wick 4" class="movie-poster">
+                <div class="movie-info">
+                    <h3 class="movie-title">John Wick: Chapter 4</h3>
+                    <p class="movie-desc">John Wick uncovers a path to defeating The High Table. But before he can earn his freedom...</p>
+                    <span class="movie-duration">2h 49m</span>
+                </div>
+                <div class="card-overlay">
+                    <a href="https://www.lionsgate.com/movies/john-wick-chapter-4" class="watch-now-btn" target="_blank">Watch Now</a>
+                    <button class="watchlist-toggle">+</button>
+                </div>
+            </div> -->
+            
+            <!-- Movie Card 2 -->
+            <!-- <div class="movie-card">
+                <img src="https://www.slsc.org/wp-content/uploads/2023/03/02-smb-dm-mobile-banner-1080x745-pl-f01-022723-63fe3cbc4df54-1.jpg" alt="The Super Mario Bros. Movie" class="movie-poster">
+                <div class="movie-info">
+                    <h3 class="movie-title">The Super Mario Bros. Movie</h3>
+                    <p class="movie-desc">A plumber named Mario travels through an underground labyrinth with his brother...</p>
+                    <span class="movie-duration">1h 32m</span>
+                </div>
+                <div class="card-overlay">
+                    <a href="https://www.thesupermariobros.movie/" class="watch-now-btn" target="_blank">Watch Now</a>
+                    <button class="watchlist-toggle">+</button>
+                </div>
+            </div> -->
+            
+            <!-- Movie Card 3 -->
+            <!-- <div class="movie-card">
+                <img src="https://m.media-amazon.com/images/M/MV5BZWMyYzFjYTYtNTRjYi00OGExLWE2YzgtOGRmYjAxZTU3NzBiXkEyXkFqcGdeQXVyMzQ0MzA0NTM@._V1_FMjpg_UX1000_.jpg" alt="Spider-Man: Across the Spider-Verse" class="movie-poster">
+                <div class="movie-info">
+                    <h3 class="movie-title">Spider-Man: No way Home</h3>
+                    <p class="movie-desc">Miles Morales catapults across the Multiverse, where he encounters a team of Spider-People...</p>
+                    <span class="movie-duration">2h 20m</span>
+                </div>
+                <div class="card-overlay">
+                    <a href="https://www.sonypictures.com/movies/spidermanacrossthespiderverse" class="watch-now-btn" target="_blank">Watch Now</a>
+                    <button class="watchlist-toggle">+</button>
+                </div>
+            </div> -->
+            
+            <!-- Movie Card 4 -->
+            <!-- <div class="movie-card">
+                <img src="https://m.media-amazon.com/images/M/MV5BYjhiNjBlODctY2ZiOC00YjVlLWFlNzAtNTVhNzM1YjI1NzMxXkEyXkFqcGdeQXVyMjQxNTE1MDA@._V1_FMjpg_UX1000_.jpg" alt="Avatar: The Way of Water" class="movie-poster">
+                <div class="movie-info">
+                    <h3 class="movie-title">Avatar: The Way of Water</h3>
+                    <p class="movie-desc">Jake Sully lives with his newfound family formed on the planet of Pandora...</p>
+                    <span class="movie-duration">3h 12m</span>
+                </div>
+                <div class="card-overlay">
+                    <a href="https://www.avatar.com/" class="watch-now-btn" target="_blank">Watch Now</a>
+                    <button class="watchlist-toggle">+</button>
+                </div>
+            </div>
+            
+            
+            <div class="movie-card">
+                <img src="https://m.media-amazon.com/images/S/pv-target-images/6ab1a7387a5971a36a576707f5e8f98611745fb78b6c5f90196fb4b6f839ec91.jpg" alt="Elemental" class="movie-poster">
+                <div class="movie-info">
+                    <h3 class="movie-title">Elemental</h3>
+                    <p class="movie-desc">In a city where fire, water, land and air residents live together, a fiery young woman...</p>
+                    <span class="movie-duration">1h 41m</span>
+                </div>
+                <div class="card-overlay">
+                    <a href="https://www.pixar.com/feature-films/elemental" class="watch-now-btn" target="_blank">Watch Now</a>
+                    <button class="watchlist-toggle">+</button>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+        <div class="section-heading">
+  <h2 class="animated-heading">Popular Shows</h2>
+  <p class="animated-subtitle">Binge-Worthy Hits You Just Can’t Miss!</p>
+</div>
+    
+        <!-- <h2> Popular Shows </h2>
+        <h3>Binge-Worthy Hits You Just Can’t Miss!</h3> -->
+    
+    
+    <!-- <div class="PScontainer" id="Shows">
+        <div class="PSbox">
+            <img src="Shows/brba.jpg" alt="">
+            <div class="card-content">
+                <h3> Breaking Bad</h3>
+                <p> A chemistry teacher diagnosed with inoperable lung cancer turns to manufacturing and selling methamphetamine with a former student to secure his family's future. <br> Ep- 62. <br> Genre: Crime, Drama.
+                </p>
+            </div>
+            <br><a href="#" class="btn"> Watch Now</a>
+            <a href="#"class="play">
+                        <i class='bx  bx-bookmark-plus'></i> 
+                    </a>
+
+        </div>
+        <div class="PSbox">
+            <img src="Shows/cher.jpg" alt="">
+            <div class="card-content">
+                <h3> Chernobyl</h3>
+                <p>In April 1986, the city of Chernobyl in the Soviet Union suffers one of the worst nuclear disasters in the history of mankind. Consequently, many heroes put their lives on the line in the following days, weeks and months. <br> Ep- 5. <br> Genre: History, Thriller
+
+
+                </p>
+            </div>
+            <br><a href="#" class="btn"> Watch Now</a>
+            <a href="#"class="play">
+                        <i class='bx  bx-bookmark-plus'></i> 
+                    </a>
+        </div>
+        <div class="PSbox">
+            <img src="Shows/S3.jpg" alt="">
+            <div class="card-content">
+                <h3> Game of Thrones</h3>
+                <p>Nine noble families fight for control over the lands of Westeros, while an ancient enemy returns after being dormant for millennia. <br> Ep- 74. <br> Genre: Action, Dark Epic
+
+                </p>
+            </div>
+            <br><a href="#" class="btn"> Watch Now</a>
+            <a href="#"class="play">
+                        <i class='bx  bx-bookmark-plus'></i> 
+                    </a>
+        </div>
+        <div class="PSbox">
+            <img src="Shows/office.jpg" alt="">
+            <div class="card-content">
+                <h3> The office</h3>
+                <p>A mockumentary on a group of typical office workers, where the workday consists of ego clashes, inappropriate behavior, tedium and romance. <br> Ep- 188. <br> Genre: Comedy, Sitcom
+
+
+                </p>
+            </div>
+            <br><a href="#" class="btn"> Watch Now</a>
+            <a href="#"class="play">
+                        <i class='bx  bx-bookmark-plus'></i> 
+                    </a>
+        </div>
+        <div class="PSbox">
+            <img src="Shows/S5.jpg" alt="">
+            <div class="card-content">
+                <h3> Pluto</h3>
+                <p> When the world's seven most advanced robots and their human allies are murdered one by one, inspector Gesicht soon discovers that he's also in danger. <br> Ep- 8. <br> Genre: Drama, Mystery, Anime
+
+                </p>
+            </div>
+            <br><a href="#" class="btn"> Watch Now</a>
+            <a href="#"class="play">
+                        <i class='bx  bx-bookmark-plus'></i> 
+                    </a>
+        </div>
+        <div class="PSbox">
+            <img src="Shows/S7.jpg" alt="">
+            <div class="card-content">
+                <h3> House of Cards</h3>
+                <p> A Congressman works with his equally conniving wife to exact revenge on the people who betrayed him. <br> Ep- 73. <br>Genre: Political Drama, Epic
+                </p>
+            </div>
+            <br><a href="#" class="btn"> Watch Now</a>
+            <a href="#"class="play">
+                        <i class='bx  bx-bookmark-plus'></i> 
+                    </a>
+        </div>
+        
+    </div> -->
+
+    <div class="PScontainer" id="Shows">
+        <div class="PSbox">
+            <img src="Shows/brba.jpg" alt="">
+            <div class="card-content">
+                <h3> Breaking Bad</h3>
+                <h4> <p>Breaking Bad: A chemistry teacher diagnosed with inoperable lung cancer turns to manufacturing and selling methamphetamine with a former student to secure his family's future. 
+                            <br>Ep- 62. 
+                            <br>Genre: Crime, Drama.</p></h4>
+            </div>
+             <input type="checkbox" id="modal-1" class="modal-toggle">
+            
+            <!-- The button that triggers the modal -->
+            <label for="modal-1" class="learn-more-btn">Learn More</label>
+                    <a href="#"class="play">
+                                <i class='bx  bx-bookmark-plus'></i> 
+                            </a>
+            <div class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title">Detailed Information</h2>
+                        <label for="modal-1" class="close-btn">&times;</label>
+                    </div>
+                    <div class="modal-body">
+                        <p>1. Breaking Bad- Starring- Bryan Cranston, Aaron Paul. <br> Creator- Vince Gilligan</p>
+
+                    </div>
+                    <a href="#" class="watch-now-btn">Watch Now</a>
+                </div>
+            </div>
+
+
+        </div>
+
+        
+        <div class="PSbox">
+            <img src="Shows/cher.jpg" alt="">
+            <div class="card-content">
+                <h3> Chernobyl</h3>
+                <h4><p>Chernobyl: In April 1986, the city of Chernobyl in the Soviet Union suffers one of the worst nuclear disasters in the history of mankind. Consequently, many heroes put their lives on the line in the following days, weeks and months. <br>Ep- 5. <br> Genre: History, Thriller</p></h4>
+               
+            </div>
+             <input type="checkbox" id="modal-2" class="modal-toggle">
+            
+            <!-- The button that triggers the modal -->
+            <label for="modal-2" class="learn-more-btn">Learn More</label>
+            
+            <!--play button-->
+             <a href="#"class="play">
+                        <i class='bx  bx-bookmark-plus'></i> 
+                    </a>
+            
+            </a>
+            <div class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title">Detailed Information</h2>
+                        <label for="modal-2" class="close-btn">&times;</label>
+                    </div>
+                    <div class="modal-body">
+                        <p>Chernobyl- Starring- Jessie Buckley, Jared Harris. Creator- Craig Mazin</p>
+
+                    </div>
+                    <a href="#" class="watch-now-btn">Watch Now</a>
+                </div>
+            </div>
+            
+            
+        </div>
+        <div class="PSbox">
+            <img src="Shows/S3.jpg" alt="">
+            <div class="card-content">
+                <h3> Game of Thrones</h3>
+                <h4><p> Game of Thrones: Nine noble families fight for control over the lands of Westeros, while an ancient enemy returns after being dormant for millennia. <br>Ep- 74. <br>Genre: Action, Dark Epic
+
+                        </p></h4>
+                
+            </div>
+             <input type="checkbox" id="modal-3" class="modal-toggle">
+            
+            <!-- The button that triggers the modal -->
+            <label for="modal-3" class="learn-more-btn">Learn More</label>
+            <!--play button-->
+            
+            <a href="#"class="play">
+                        <i class='bx  bx-bookmark-plus'></i> 
+                    </a>
+            <div class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title">Detailed Information</h2>
+                        <label for="modal-3" class="close-btn">&times;</label>
+                    </div>
+                    <div class="modal-body">
+                        <p> Game of thrones- Starring- Emilia Clarke, Peter Dinklage. Creator- David Benioff, D.B Weiss
+                        </p>
+
+                    </div>
+                    <a href="#" class="watch-now-btn">Watch Now</a>
+                </div>
+            </div>
+
+
+
+        </div>
+        <div class="PSbox">
+            <img src="Shows/office.jpg" alt="">
+            <div class="card-content">
+                <h3> The office</h3>
+                <h4> <p>The Office: A mockumentary on a group of typical office workers, where the workday consists of ego clashes, inappropriate behavior, tedium and romance. <br> Ep- 188. <br> Genre: Comedy, Sitcom
+
+
+                        </p></h4>
+                
+            </div>
+             <input type="checkbox" id="modal-4" class="modal-toggle">
+            
+            <!-- The button that triggers the modal -->
+            <label for="modal-4" class="learn-more-btn">Learn More</label>
+            <!--play button-->
+            
+            <a href="#"class="play">
+                        <i class='bx  bx-bookmark-plus'></i> 
+                    </a>
+
+            <div class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title">Detailed Information</h2>
+                        <label for="modal-4" class="close-btn">&times;</label>
+                    </div>
+                    <div class="modal-body">
+                            <p>The office- Starring- Steve Carell, John Krasinski. Creator- Ricky Gervais, Greg Daniels    </p>
+
+                    </div>
+                    <a href="#" class="watch-now-btn">Watch Now</a>
+                </div>
+            </div>        
+        </div>
+        <div class="PSbox">
+            <img src="Shows/S5.jpg" alt="">
+            <div class="card-content">
+                <h3> Pluto</h3>
+                <h4><p>Pluto: When the world's seven most advanced robots and their human allies are murdered one by one, inspector Gesicht soon discovers that he's also in danger. Ep- 8. Genre: Drama, Mystery, Anime
+</p></h4>
+                
+            </div>
+             <input type="checkbox" id="modal-5" class="modal-toggle">
+            
+            <!-- The button that triggers the modal -->
+            <label for="modal-5" class="learn-more-btn">Learn More</label>
+            <!--playbutton-->
+            
+            <a href="#"class="play">
+                        <i class='bx  bx-bookmark-plus'></i> 
+                    </a>
+            <div class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title">Detailed Information</h2>
+                        <label for="modal-5" class="close-btn">&times;</label>
+                    </div>
+                    <div class="modal-body">
+                        <p>Pluto- Starring- Shinshu Fuji, Yoko Hikasa. Creator- Osamu Tezuka</p>
+
+                    </div>
+                    <a href="#" class="watch-now-btn">Watch Now</a>
+                </div>
+            </div>
+        </div>
+        <div class="PSbox">
+            <img src="Shows/S7.jpg" alt="">
+            <div class="card-content">
+                <h3> House of Cards</h3>
+                <h4><p>House of Cards: A Congressman works with his equally conniving wife to exact revenge on the people who betrayed him. 
+                            <br>Ep- 73. 
+                            <br> Genre: Political Drama, Epic</p></h4>
+                
+            </div>
+            
+             <!-- The hidden checkbox that controls the modal -->
+            <input type="checkbox" id="modal-toggle" class="modal-toggle">
+            
+            <!-- The button that triggers the modal -->
+            <label for="modal-toggle" class="learn-more-btn">Learn More</label>
+             <a href="#"class="play">
+                        <i class='bx  bx-bookmark-plus'></i> 
+                    </a>
+            <!-- The Modal -->
+            <div class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title">Detailed Information</h2>
+                        <label for="modal-toggle" class="close-btn">&times;</label>
+                    </div>
+                    <div class="modal-body">
+                        <p>House of cards- Starring- Kevin Spacey, Michel Gill. Creator- Beau Willimon</p>
+                    </div>
+                    <a href="#" class="watch-now-btn">Watch Now</a>
+                </div>
+            </div>
+
+        </div>
+        
+    </div>
+
+    <!--reviiew section-->
+    <section class="reviews-section" id="user-reviews">
+            <h3 class="section-title">User Reviews</h3>
+            
+            <div class="reviews-container">
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="user-avatar">
+                            <img src="https://via.placeholder.com/50" alt="User Avatar">
+                        </div>
+                        <div class="user-info">
+                            <h4>John Doe</h4>
+                            <div class="review-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="review-date">Posted on March 15, 2025</div>
+                        </div>
+                    </div>
+                    <div class="review-content">
+                        <p>Visually stunning and intellectually stimulating. Loved the hover effects on buttons too!</p>
+                    </div>
+                    <div class="review-actions">
+                        <button><i class="far fa-thumbs-up"></i> Helpful (42)</button>
+                        <button><i class="far fa-comment"></i> Reply</button>
+                    </div>
+                </div>
+                
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="user-avatar">
+                            <img src="https://via.placeholder.com/50" alt="User Avatar">
+                        </div>
+                        <div class="user-info">
+                            <h4>Jane Smith</h4>
+                            <div class="review-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <div class="review-date">Posted on May 22, 2025</div>
+                        </div>
+                    </div>
+                    <div class="review-content">
+                        <p>Some text gets slightly lost. Maybe lighten the secondary text? Otherwise, fantastic job on responsiveness and smooth scrolling!</p>
+                    </div>
+                    <div class="review-actions">
+                        <button><i class="far fa-thumbs-up"></i> Helpful (28)</button>
+                        <button><i class="far fa-comment"></i> Reply</button>
+                    </div>
+                </div>
+                
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="user-avatar">
+                            <img src="https://via.placeholder.com/50" alt="User Avatar">
+                             <!-- <a href="#" class="user-icon">
+                                <i class='bx  bx-user'></i> </a> -->
+                        </div>
+                        <div class="user-info">
+                            <h4>Robert Johnson</h4>
+                            <div class="review-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <div class="review-date">Posted on April 5, 2025</div>
+                        </div>
+                    </div>
+                    <div class="review-content">
+                        <p>The smooth animations, well-structured review cards, and professional footer show real attention to detail. Clearly built with care!</p>
+                    </div>
+                    <div class="review-actions">
+                        <button><i class="far fa-thumbs-up"></i> Helpful (15)</button>
+                        <button><i class="far fa-comment"></i> Reply</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="add-review">
+                <h3 class="section-title">Write a Review</h3>
+                <form class="review-form">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="rating">Rating</label>
+                        <select id="rating" required>
+                            <option value="">Select a rating</option>
+                            <option value="5">5 Stars</option>
+                            <option value="4">4 Stars</option>
+                            <option value="3">3 Stars</option>
+                            <option value="2">2 Stars</option>
+                            <option value="1">1 Star</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="review">Your Review</label>
+                        <textarea id="review" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Submit Review</button>
+                </form>
+            </div>
+        </section>
+
+    <!--footer-->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-about">
+                <div class="footer-logo">MovieFlix</div>
+                <p>Your premier destination for the latest movies, reviews, and showtimes. We bring the magic of cinema right to your screen.</p>
+            </div>
+            
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="https://www.example.com/terms" target="_blank" rel="noopener noreferrer">Terms & Conditions</a></li>
+                    <li><a href="https://www.example.com/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a></li>
+                    <li><a href="https://www.example.com/faq" target="_blank" rel="noopener noreferrer">FAQ</a></li>
+                    <li><a href="https://www.example.com/contact" target="_blank" rel="noopener noreferrer">Contact Us</a></li>
+                    <li><a href="https://www.example.com/about" target="_blank" rel="noopener noreferrer">About Us</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-social">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 Movieflix. All Rights Reserved.</p>
+        </div>
+
+        <button class="btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    </footer>
+    
+    
+</body>
+</html>
